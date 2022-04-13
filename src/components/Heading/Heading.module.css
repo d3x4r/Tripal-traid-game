@@ -1,0 +1,37 @@
+.root {
+    margin-bottom: 0.5em;
+    color: #000000d9;
+    font-weight: 600;
+}
+
+.colorBlack {
+    color: #000000;
+}
+
+.level1 {
+    font-size: 38px;
+    line-height: 1.23;
+}
+
+.level2 {
+    font-size: 30px;
+}
+
+.level3 {
+    font-size: 24px;
+}
+
+.level2,
+.level3 {
+    line-height: 1.35;
+}
+
+.level4 {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+.level5 {
+    font-size: 16px;
+    line-height: 1.5;
+}

@@ -1,17 +1,21 @@
 import React from 'react';
-import style from './Header.module.css';
+import Container from '../Container';
+import s from './Header.module.css';
+import logo from '../../assets/logo.png';
 
 const MENU = ['Menu 1', 'Menu 2', 'Menu 3', 'Menu 4'];
 
 const Header = () => (
-    <header class={style.root}>
-        <div class={style.header}>
-            <div class={style.container}>
-                <div class={style.logo}></div>
-                <ul class={style.nav}>
-                    {MENU.map((name) => <li><a href="#">{name}</a></li>)}
+    <header className={s.root}>
+        <div className={s.header}>
+            <Container className={s.content_wrapper}>
+                <div className={s.logo}>
+                    <img src={logo} alt="logo" />
+                </div>
+                <ul className={s.nav}>
+                    {MENU.map((name) => <li key={name}><a href="#">{name}</a></li>)}
                 </ul>
-            </div>
+            </Container>
         </div>
     </header>
 );
