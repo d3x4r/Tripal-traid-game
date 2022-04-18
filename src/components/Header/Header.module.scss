@@ -14,17 +14,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &.small {
+        height: 60px;
+        box-shadow: 0px 1px 3px 0px rgba(50, 50, 50, 0.8);
+    }
 }
 
 .content_wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.header.small {
-    height: 60px;
-    box-shadow: 0px 1px 3px 0px rgba(50, 50, 50, 0.8);
 }
 
 .logo {
