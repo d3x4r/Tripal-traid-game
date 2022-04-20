@@ -14,19 +14,16 @@ const BioComponents = {
     'img': src => <div className={s.imgContainer}><img src={src} alt="person" /></div>
 };
 
-const Biography = ({ id, onBackClick }) => {
-    console.log(BIO[id]);
-    return (
-        <section className={s.root}>
-            <Container>
-                <div className={s.buttonContainer}>
-                    <Button onClick={onBackClick} black>Go Back</Button>
-                </div>
-                {BIO[id].map((field, i) => <Fragment key={i}>{BioComponents[field.type](field.text ?? field.src)}</Fragment>)}
-            </Container>
-        </section>
-    );
-};
+const Biography = ({ id, onBackClick }) => (
+    <section className={s.root}>
+        <Container>
+            <div className={s.buttonContainer}>
+                <Button onClick={onBackClick} black>Go Back</Button>
+            </div>
+            {BIO[id].map((field, i) => <Fragment key={i}>{BioComponents[field.type](field.text ?? field.src)}</Fragment>)}
+        </Container>
+    </section>
+);
 
 Biography.propTypes = {
     id: PropTypes.number.isRequired,
