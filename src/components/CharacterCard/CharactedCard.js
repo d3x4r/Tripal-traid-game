@@ -12,7 +12,8 @@ const CharacterCard = ({
     humanName,
     src,
     isLike,
-    onLikeClick
+    onLikeClick,
+    onBioClick,
 }) => {
 
     return (
@@ -36,7 +37,7 @@ const CharacterCard = ({
                         <Like />
                     </div>
                     <div className={s.readBio}>
-                        <a href="#">Read bio</a>
+                        <a href="#" onClick={onBioClick}>Read bio</a>
                     </div>
                 </div>
             </div>
@@ -56,6 +57,7 @@ CharacterCard.propTypes = {
     src: PropTypes.string,
     isLike: PropTypes.bool,
     onLikeClick: PropTypes.func,
+    onBioClick: PropTypes.func,
 };
 
 export default CharacterCard;

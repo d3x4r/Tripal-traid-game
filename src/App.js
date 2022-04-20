@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import Header from './components/Header';
 import Slider from './components/Slider';
 import Footer from './components/Footer';
 import Container from './components/Container';
 import Heading from './components/Heading';
 import CharacterCard from './components/CharacterCard';
+import Biography from './pages/Biography';
 import s from './App.module.scss';
 
 
@@ -73,6 +74,7 @@ const CHARACTERS = [
 
 function App() {
   const [characters, setCharacters] = useState(CHARACTERS);
+  const [selectedCharacterId, setSelectedCharacterId] = useState(null);
 
   const handleLikeClick = (id) => () => {
     setCharacters((prevCharacters) => (
@@ -88,32 +90,46 @@ function App() {
     ));
   };
 
+  const handleBioClick = (id) => (e) => {
+    e.preventDefault();
+    setSelectedCharacterId(id);
+  };
+
+  const handleBackClick = useCallback(() => setSelectedCharacterId(null), []);
+
   return (
     <>
       <Header />
-      <Slider />
-      <section className={s.cardSection}>
-        <Container>
-          <div className={s.cardTitle}>
-            <Heading level="1" backLine>Marvel Cards</Heading>
-            <Heading level="2">Collect your best five</Heading>
-          </div>
-          <div className={s.cardWrap}>
-            {characters.map((character) => (
-              <div key={character.id}>
-                <CharacterCard
-                  id={character.id}
-                  name={character.name}
-                  description={character.description}
-                  humanName={character.humanName}
-                  src={character.thumbnail.path}
-                  isLike={character.isLike}
-                  onLikeClick={handleLikeClick(character.id)}
-                />
-              </div>))}
-          </div>
-        </Container>
-      </section>
+      {selectedCharacterId ? (
+        <Biography id={selectedCharacterId} onBackClick={handleBackClick} />
+      ) : (
+        <>
+          <Slider />
+          <section className={s.cardSection}>
+            <Container>
+              <div className={s.cardTitle}>
+                <Heading level="1" backLine>Marvel Cards</Heading>
+                <Heading level="2">Collect your best five</Heading>
+              </div>
+              <div className={s.cardWrap}>
+                {characters.map((character) => (
+                  <div className={s.card} key={character.id}>
+                    <CharacterCard
+                      id={character.id}
+                      name={character.name}
+                      description={character.description}
+                      humanName={character.humanName}
+                      src={character.thumbnail.path}
+                      isLike={character.isLike}
+                      onLikeClick={handleLikeClick(character.id)}
+                      onBioClick={handleBioClick(character.id)}
+                    />
+                  </div>))}
+              </div>
+            </Container>
+          </section>
+        </>
+      )}
       <Footer />
     </>
   );
