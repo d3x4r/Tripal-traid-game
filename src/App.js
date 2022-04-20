@@ -95,8 +95,8 @@ function App() {
       <section className={s.cardSection}>
         <Container>
           <div className={s.cardTitle}>
-            <Heading level='1' backLine>Marvel Cards</Heading>
-            <Heading level='2'>Collect your best five</Heading>
+            <Heading level="1" backLine>Marvel Cards</Heading>
+            <Heading level="2">Collect your best five</Heading>
           </div>
           <div className={s.cardWrap}>
             {characters.map((character) => (
