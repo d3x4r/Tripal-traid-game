@@ -9,9 +9,10 @@ const TRIGGER_SIZE = 60;
 
 const Header = () => {
     const [isHeaderSmall, setHeaderSmall] = useState(false);
-    const onScrollMove = () => setHeaderSmall(window.scrollY > TRIGGER_SIZE);
 
     useEffect(() => {
+        const onScrollMove = () => setHeaderSmall(window.scrollY > TRIGGER_SIZE);
+
         window.addEventListener('scroll', onScrollMove);
         return () => window.removeEventListener('scroll', onScrollMove);
     }, []);

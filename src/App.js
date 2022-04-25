@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import Header from './components/Header';
 import Slider from './components/Slider';
 import Footer from './components/Footer';
@@ -90,18 +90,15 @@ function App() {
     ));
   };
 
-  const handleBioClick = (id) => (e) => {
-    e.preventDefault();
+  const handleCharacterSelect = (id) => () => {
     setSelectedCharacterId(id);
   };
-
-  const handleBackClick = useCallback(() => setSelectedCharacterId(null), []);
 
   return (
     <>
       <Header />
       {selectedCharacterId ? (
-        <Biography id={selectedCharacterId} onBackClick={handleBackClick} />
+        <Biography id={selectedCharacterId} onBackClick={handleCharacterSelect(null)} />
       ) : (
         <>
           <Slider />
@@ -122,7 +119,7 @@ function App() {
                       src={character.thumbnail.path}
                       isLike={character.isLike}
                       onLikeClick={handleLikeClick(character.id)}
-                      onBioClick={handleBioClick(character.id)}
+                      onBioClick={handleCharacterSelect(character.id)}
                     />
                   </div>))}
               </div>
