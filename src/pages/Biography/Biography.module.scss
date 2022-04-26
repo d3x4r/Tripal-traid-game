@@ -1,0 +1,26 @@
+.root {
+    display: flex;
+    justify-content: center;
+
+    padding-top: 30px;
+    padding-bottom: 30px;
+    
+    .buttonContainer {
+        display: flex;
+        justify-content: center;
+
+        margin-bottom: 40px;
+    }
+
+    .paragraph {
+        margin-bottom: 15px;
+    }
+
+    .imgContainer {
+        display: flex;
+        justify-content: center;
+        margin-top: 5px;
+        margin-bottom: 20px;
+    }
+}
+
