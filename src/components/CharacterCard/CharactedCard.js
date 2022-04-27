@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import cn from 'classnames';
+import { Link } from 'react-router-dom';
 import Heading from '../Heading';
 import Text from '../Text';
 import { ReactComponent as Like } from './assets/heart.svg';
@@ -13,9 +14,7 @@ const CharacterCard = ({
     src,
     isLike,
     onLikeClick,
-    onBioClick,
 }) => {
-
     return (
         <div className={s.root}>
             <img className={s.cardImage} src={src} alt={name} />
@@ -37,7 +36,7 @@ const CharacterCard = ({
                         <Like />
                     </div>
                     <div className={s.readBio}>
-                        <a href="#" onClick={onBioClick}>Read bio</a>
+                        <Link to={`/characters/${id}`}>Read bio</Link>
                     </div>
                 </div>
             </div>
@@ -57,7 +56,6 @@ CharacterCard.propTypes = {
     src: PropTypes.string,
     isLike: PropTypes.bool,
     onLikeClick: PropTypes.func,
-    onBioClick: PropTypes.func,
 };
 
 export default CharacterCard;

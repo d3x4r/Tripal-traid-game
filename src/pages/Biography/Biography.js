@@ -1,6 +1,5 @@
-import PropTypes from 'prop-types';
-import { BIO } from './data';
-import Button from '../../components/Button';
+import { useParams } from 'react-router-dom';
+import { BIO } from '../../constants/biography';
 import Heading from '../../components/Heading';
 import Text from '../../components/Text';
 import Container from '../../components/Container';
@@ -20,20 +19,17 @@ const BioContent = ({ field }) => {
     }
 };
 
-const Biography = ({ id, onBackClick }) => (
-    <section className={s.root}>
-        <Container>
-            <div className={s.buttonContainer}>
-                <Button onClick={onBackClick} black>Go Back</Button>
-            </div>
-            {BIO[id].map((field, i) => <BioContent key={i} field={field} />)}
-        </Container>
-    </section>
-);
-
-Biography.propTypes = {
-    id: PropTypes.number.isRequired,
-    onBackClick: PropTypes.func.isRequired
+const Biography = () => {
+    const { id } = useParams();
+    return (
+        <>
+            <section className={s.root}>
+                <Container>
+                    {BIO[id].map((field, i) => <BioContent key={i} field={field} />)}
+                </Container>
+            </section>
+        </>
+    );
 };
 
 export default Biography;
