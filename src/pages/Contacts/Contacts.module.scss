@@ -1,0 +1,26 @@
+.root {
+    display: flex;
+    justify-content: center;
+
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.text {
+    margin-bottom: 15px;
+}
+
+.imageContainer {
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 25px;
+}
+
+.image {
+    width: 250px;
+}
+
+.text {
+    margin-bottom: 25px;
+}
