@@ -1,8 +1,9 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { BIO } from '../../constants/biography';
 import Heading from '../../components/Heading';
 import Text from '../../components/Text';
 import Container from '../../components/Container';
+import Button from '../../components/Button';
 import s from './Biography.module.scss';
 
 const BioContent = ({ field }) => {
@@ -21,14 +22,20 @@ const BioContent = ({ field }) => {
 
 const Biography = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
+    const handleGoBackClick = () => navigate(-1);
+
     return (
-        <>
-            <section className={s.root}>
-                <Container>
-                    {BIO[id].map((field, i) => <BioContent key={i} field={field} />)}
-                </Container>
-            </section>
-        </>
+        <section className={s.root}>
+            <Container>
+                <div>
+                    <Button black onClick={handleGoBackClick}>
+                        Go Back
+                    </Button>
+                </div>
+                {BIO[id].map((field, i) => <BioContent key={i} field={field} />)}
+            </Container>
+        </section>
     );
 };
 
