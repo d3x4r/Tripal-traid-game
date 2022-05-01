@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Navigate } from 'react-router-dom';
 import { BIO } from '../../constants/biography';
 import Heading from '../../components/Heading';
 import Text from '../../components/Text';
@@ -24,6 +24,10 @@ const Biography = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const handleGoBackClick = () => navigate(-1);
+
+    if (!BIO[id]) {
+        return <Navigate to="/characters/" />;
+    }
 
     return (
         <section className={s.root}>
