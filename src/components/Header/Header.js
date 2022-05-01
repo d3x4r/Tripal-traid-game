@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import Container from '../Container';
 import s from './Header.module.scss';
@@ -26,7 +26,7 @@ const Header = () => {
                         <img src={logo} alt="logo" />
                     </Link>
                     <ul className={s.nav}>
-                        {MENU.map(({ name, path }) => <li key={name}><Link to={path}>{name}</Link></li>)}
+                        {MENU.map(({ name, path }) => <li key={name}><NavLink className={({ isActive }) => isActive ? s.active : null} to={path}>{name}</NavLink></li>)}
                     </ul>
                 </Container>
             </div>
