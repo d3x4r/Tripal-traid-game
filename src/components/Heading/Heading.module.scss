@@ -15,6 +15,12 @@
             margin: 15px auto 0;
         }
     }
+
+    &:hover {
+        .anchor {
+            visibility: visible;
+        }
+    }
 }
 
 .colorBlack {
@@ -47,4 +53,14 @@
 .level5 {
     font-size: 16px;
     line-height: 1.5;
+}
+
+.anchor {
+    visibility: hidden;
+    margin-left: 10px;
+
+    svg {
+        width: 20px;
+        height: auto;
+    }
 }
