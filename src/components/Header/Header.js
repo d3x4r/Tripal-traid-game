@@ -26,7 +26,15 @@ const Header = () => {
                         <img src={logo} alt="logo" />
                     </Link>
                     <ul className={s.nav}>
-                        {MENU.map(({ name, path }) => <li key={name}><NavLink className={({ isActive }) => isActive ? s.active : null} to={path}>{name}</NavLink></li>)}
+                        {
+                            MENU.map(({ name, path }) => (
+                                <li key={name}>
+                                    <NavLink className={({ isActive }) => isActive ? s.active : null} to={path}>
+                                        {name}
+                                    </NavLink>
+                                </li>
+                            ))
+                        }
                     </ul>
                 </Container>
             </div>

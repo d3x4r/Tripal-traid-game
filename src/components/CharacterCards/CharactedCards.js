@@ -23,34 +23,7 @@ const CharacterCards = ({ isPage }) => {
         ));
     };
 
-    if (!isPage) {
-        return (
-            <section className={s.cardSection}>
-                <Container>
-                    <div className={s.cardTitle}>
-                        <Heading level="1" backLine>Marvel Cards</Heading>
-                        <Heading level="2">Collect your best five</Heading>
-                    </div>
-                    <div className={s.cardWrap}>
-                        {characters.map((character) => (
-                            <div className={s.card} key={character.id}>
-                                <CharacterCard
-                                    id={character.id}
-                                    name={character.name}
-                                    description={character.description}
-                                    humanName={character.humanName}
-                                    src={character.thumbnail.path}
-                                    isLike={character.isLike}
-                                    onLikeClick={handleLikeClick(character.id)}
-                                />
-                            </div>))}
-                    </div>
-                </Container>
-            </section>
-        );
-    }
-
-    return (
+    const content = (
         <>
             <div className={s.cardTitle}>
                 <Heading level="1" backLine>Marvel Cards</Heading>
@@ -72,6 +45,18 @@ const CharacterCards = ({ isPage }) => {
             </div>
         </>
     );
+
+    if (!isPage) {
+        return (
+            <section className={s.cardSection}>
+                <Container>
+                    {content}
+                </Container>
+            </section>
+        );
+    }
+
+    return content;
 };
 
 CharacterCards.propTypes = {

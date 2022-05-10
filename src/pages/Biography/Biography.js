@@ -1,5 +1,4 @@
-import { useEffect, useLayoutEffect } from 'react';
-import { useParams, useNavigate, Navigate, useLocation } from 'react-router-dom';
+import { useParams, useNavigate, Navigate } from 'react-router-dom';
 import { BIO } from '../../constants/biography';
 import Heading from '../../components/Heading';
 import Text from '../../components/Text';
@@ -23,21 +22,8 @@ const BioContent = ({ field }) => {
 
 const Biography = () => {
     const { id } = useParams();
-    const { hash, pathname } = useLocation();
     const navigate = useNavigate();
     const handleGoBackClick = () => navigate(-1);
-
-    useEffect(() => {
-        const anchor = document.getElementById(`${hash.replace('#', '')}`);
-
-        if (anchor) {
-            anchor.scrollIntoView({
-                block: 'center',
-                behavior: 'smooth'
-            });
-        }
-
-    }, [pathname, hash, id]);
 
     if (!BIO[id]) {
         return <Navigate to="/characters/" />;
