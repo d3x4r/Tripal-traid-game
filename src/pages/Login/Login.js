@@ -2,6 +2,7 @@ import { useState, useReducer } from 'react';
 import cn from 'classnames';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import Footer from '../../components/Footer';
 import { reducer } from './reducer';
 import { ReactComponent as Pen } from './icon-pen.svg'
 import logo from './logo.png';
@@ -39,7 +40,7 @@ const Login = () => {
     };
 
     return (
-        <>
+        <div className={s.root}>
             <div className={s.headerLogo}>
                 <img src={logo} alt="Logo" />
             </div>
@@ -117,7 +118,8 @@ const Login = () => {
                     </form>
                 </div>
             </div>
-        </>
+            <Footer />
+        </div>
     );
 };
 
