@@ -5,7 +5,7 @@ import Button from '../../components/Button';
 import Footer from '../../components/Footer';
 import { reducer } from './reducer';
 import { ReactComponent as Pen } from './icon-pen.svg'
-import logo from './logo.png';
+import logo from '../../assets/logo.png';
 import s from './Login.module.scss';
 import {
     INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD, INPUT_SIGNUP_EMAIL,
