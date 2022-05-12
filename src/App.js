@@ -6,10 +6,12 @@ import About from './pages/About';
 import Contacts from './pages/Contacts';
 import Layout from './components/Layout';
 import NotFound from './pages/NotFound';
+import Login from './pages/Login';
 
 function App() {
   return (
     <Routes>
+      <Route path="/auth" element={<Login />} />
       <Route path="/" element={<Layout />}>
         <Route index element={<Main />} />
         <Route path="characters" element={<Characters isPage />} />

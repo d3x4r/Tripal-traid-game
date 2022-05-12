@@ -10,18 +10,20 @@ const Layout = () => {
     const { pathname, hash } = useLocation();
 
     useEffect(() => {
-      window.scrollTo(0, 0);
-    }, [pathname]);
+        if (hash) {
+            const anchor = document.getElementById(`${hash.replace('#', '')}`);
+            window.addEventListener('load', () => {
+                if (anchor) {
+                    anchor.scrollIntoView({
+                        block: 'center',
+                        behavior: 'smooth'
+                    });
+                }
+            }, { once: true })
 
-    useEffect(() => {
-        const anchor = document.getElementById(`${hash.replace('#', '')}`);
-        if (anchor) {
-            anchor.scrollIntoView({
-                block: 'center',
-                behavior: 'smooth'
-            });
+        } else {
+            window.scrollTo(0, 0);
         }
-
     }, [pathname, hash]);
 
     return (
