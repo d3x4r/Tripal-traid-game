@@ -14,7 +14,7 @@ const Slider = () => (
                     <img className={s.image} src={logo} alt="Logo" />
                 </div>
                 <div className={s.call}>
-                    <Button>WoW</Button>
+                    <Button type="button">WoW</Button>
                 </div>
             </Container>
         </div>

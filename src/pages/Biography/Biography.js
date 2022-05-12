@@ -33,7 +33,7 @@ const Biography = () => {
         <section className={s.root}>
             <Container>
                 <div>
-                    <Button black onClick={handleGoBackClick}>
+                    <Button type="button" black onClick={handleGoBackClick}>
                         Go Back
                     </Button>
                 </div>
