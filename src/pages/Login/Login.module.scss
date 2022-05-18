@@ -409,3 +409,13 @@
     opacity: 0;
   }
 }
+
+.signupValidationMessage {
+  display: block;
+  position: relative;
+
+  margin-bottom: 20px;
+
+  color: white;
+  text-align: center;
+}

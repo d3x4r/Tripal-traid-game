@@ -10,7 +10,7 @@ import s from './Login.module.scss';
 import {
     INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD, INPUT_SIGNUP_EMAIL,
     INPUT_SIGNUP_PASSWORD, INPUT_SIGNUP_REPEAT_PASSWORD, RESET_LOGIN_FORM,
-    RESET_SIGNUP_FORM
+    RESET_SIGNUP_FORM, SET_SIGNUP_VALIDATION_MESSAGE
 } from './actions';
 
 const initialState = {
@@ -19,24 +19,45 @@ const initialState = {
     signupEmail: '',
     signupPassword: '',
     signupRepeatPassword: '',
+    validationMessages: {
+        signup: null,
+    },
 };
+
+const signupPasswordsError = 'Passwords do not match!';
 
 const Login = () => {
     const [isToggleActive, setToggleActive] = useState(false);
     const [state, dispatch] = useReducer(reducer, initialState);
+    const {
+        signupPassword, signupRepeatPassword,
+        loginEmail, loginPassword, signupEmail,
+        validationMessages: { signup },
+    } = state;
 
     const handleToggleClick = () => setToggleActive((prev) => !prev);
     const handleCloseClick = () => setToggleActive(false);
     const onHandleSubmitLoginForm = (evt) => {
         evt.preventDefault();
-        console.log('Sending login request ...')
+        console.log('Sending login request ...');
         dispatch({ type: RESET_LOGIN_FORM });
     };
 
     const onHandleSubmitSignupForm = (evt) => {
         evt.preventDefault();
-        console.log('Sending signup request ...')
-        dispatch({ type: RESET_SIGNUP_FORM });
+
+        if (signupPassword !== signupRepeatPassword) {
+            dispatch({ type: SET_SIGNUP_VALIDATION_MESSAGE, payload: signupPasswordsError });
+        } else {
+            console.log('Sending signup request ...');
+            dispatch({ type: RESET_SIGNUP_FORM });
+        }
+    };
+
+    const onSignupFormChange = ({ target: { type } }) => {
+        if (type === 'password' && signup) {
+            dispatch({ type: SET_SIGNUP_VALIDATION_MESSAGE, payload: null });
+        }
     };
 
     return (
@@ -55,7 +76,7 @@ const Login = () => {
                             id="#email"
                             label="Email"
                             onChange={({ target: { value } }) => dispatch({ type: INPUT_LOGIN_EMAIL, payload: value })}
-                            value={state.loginEmail}
+                            value={loginEmail}
                             isRequired
                         />
                         <Input
@@ -64,7 +85,7 @@ const Login = () => {
                             id="#password"
                             label="Password"
                             onChange={({ target: { value } }) => dispatch({ type: INPUT_LOGIN_PASSWORD, payload: value })}
-                            value={state.loginPassword}
+                            value={loginPassword}
                             isRequired
                         />
                         <div className={s.buttonContainer}>
@@ -82,14 +103,14 @@ const Login = () => {
                     <h1 className={s.title}>Register
                         <div className={s.close} onClick={handleCloseClick}></div>
                     </h1>
-                    <form onSubmit={onHandleSubmitSignupForm}>
+                    <form onSubmit={onHandleSubmitSignupForm} onChange={onSignupFormChange}>
                         <Input
                             className={s.inputContainer}
                             type="email"
                             id="#signup-email"
                             label="Email"
                             onChange={({ target: { value } }) => dispatch({ type: INPUT_SIGNUP_EMAIL, payload: value })}
-                            value={state.signupEmail}
+                            value={signupEmail}
                             isRequired
                         />
                         <Input
@@ -98,7 +119,7 @@ const Login = () => {
                             id="#signup-password"
                             label="Password"
                             onChange={({ target: { value } }) => dispatch({ type: INPUT_SIGNUP_PASSWORD, payload: value })}
-                            value={state.signupPassword}
+                            value={signupPassword}
                             isRequired
                         />
                         <Input
@@ -107,10 +128,11 @@ const Login = () => {
                             id="#signup-repeat-password"
                             label="Repeat Password"
                             onChange={({ target: { value } }) => dispatch({ type: INPUT_SIGNUP_REPEAT_PASSWORD, payload: value })}
-                            value={state.signupRepeatPassword}
+                            value={signupRepeatPassword}
                             isRequired
                         />
                         <div className={s.buttonContainer}>
+                            {signup && <span className={s.signupValidationMessage}>{signupPasswordsError}</span>}
                             <Button type="submit">
                                 <span>Register</span>
                             </Button>

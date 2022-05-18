@@ -1,7 +1,7 @@
 import {
     INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD, INPUT_SIGNUP_EMAIL,
     INPUT_SIGNUP_PASSWORD, INPUT_SIGNUP_REPEAT_PASSWORD, RESET_LOGIN_FORM,
-    RESET_SIGNUP_FORM
+    RESET_SIGNUP_FORM, SET_SIGNUP_VALIDATION_MESSAGE
 } from './actions';
 
 export const reducer = (state, action) => {
@@ -20,6 +20,9 @@ export const reducer = (state, action) => {
             return { ...state, loginEmail: '', loginPassword: '' };
         case RESET_SIGNUP_FORM:
             return { ...state, signupEmail: '', signupPassword: '', signupRepeatPassword: '' };
+        case SET_SIGNUP_VALIDATION_MESSAGE:
+            const { validationMessages } = state;
+            return { ...state, validationMessages: { ...validationMessages, signup: action.payload } };
         default:
             return state;
     }
