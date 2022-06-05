@@ -1,27 +1,15 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import PropTypes from 'prop-types';
 import Heading from '../Heading';
 import Container from '../Container';
-import { CHARACTERS } from '../../constants/characters';
 import CharacterCard from '../CharacterCard';
+import { CharactersLikesContext, LIKE_CLICK } from '../../contexts/CharactersContext';
 import s from './CharacterCards.module.scss';
 
 const CharacterCards = ({ isPage }) => {
-    const [characters, setCharacters] = useState(CHARACTERS);
+    const { state: { characters }, dispatch } = useContext(CharactersLikesContext);
 
-    const handleLikeClick = (id) => () => {
-        setCharacters((prevCharacters) => (
-            prevCharacters.map((character) => {
-                if (character.id === id) {
-                    return {
-                        ...character,
-                        isLike: !character.isLike
-                    };
-                }
-                return character;
-            })
-        ));
-    };
+    const handleLikeClick = (id) => () => dispatch({ type: LIKE_CLICK, payload: id })
 
     const content = (
         <>
