@@ -1,0 +1,1 @@
+export const LIKE_CLICK = 'LIKE_CLICK';
